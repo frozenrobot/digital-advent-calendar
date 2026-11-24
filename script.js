@@ -11,8 +11,9 @@
        ?reset        → close all windows again            */
   if (params.has("reset")) localStorage.removeItem(STORE);
 
+  let override = null;   // set by window.AdventPreview(), used by hosted previews
   function today() {
-    const p = params.get("preview");
+    const p = override || params.get("preview");
     if (p === "all") return 99;
     if (p && Number(p) >= 1) return Number(p);
     const now = new Date();
@@ -235,6 +236,9 @@
   }
   addEventListener("resize", resize);
   resize(); snow();
+
+  window.AdventPreview = v => { override = v || null; refresh(); };
+  window.AdventReset = () => { opened.clear(); save(); refresh(); };
 
   refresh();
   setInterval(refresh, 60000); // unlocks at midnight without a reload
