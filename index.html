@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Advent Calendar</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎄</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sky -->
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="sleigh" aria-hidden="true">🦌🦌🦌<span class="sleigh-santa">🛷</span></div>
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <!-- Snowy hills -->
+  <svg class="hills" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#b9cdea" d="M0 190 Q 240 90 520 180 T 1000 150 T 1440 190 V320 H0Z"/>
+    <path fill="#dbe7f8" d="M0 240 Q 300 150 640 230 T 1440 210 V320 H0Z"/>
+    <path fill="#ffffff" d="M0 280 Q 360 220 760 275 T 1440 260 V320 H0Z"/>
+  </svg>
+  <div class="trees" aria-hidden="true">
+    <span style="left:4%;font-size:54px">🌲</span>
+    <span style="left:11%;font-size:36px;bottom:26px">🌲</span>
+    <span style="left:47%;font-size:30px;bottom:18px">⛄</span>
+    <span style="right:13%;font-size:40px;bottom:22px">🌲</span>
+    <span style="right:5%;font-size:60px">🎄</span>
+  </div>
+
+  <!-- String lights -->
+  <div class="lights" id="lights" aria-hidden="true"></div>
+
+  <main>
+    <header>
+      <h1 id="title"></h1>
+      <p class="subtitle" id="subtitle"></p>
+      <p class="countdown" id="countdown"></p>
+    </header>
+
+    <section class="calendar" id="calendar" aria-label="Advent calendar windows"></section>
+    <section class="finale" id="finale" aria-label="Christmas Day"></section>
+  </main>
+
+  <button class="music-btn" id="musicBtn" aria-label="Toggle music" title="Music on/off">🔔</button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Pop-up shown when a window is opened -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div class="modal-day" id="modalDay"></div>
+      <div class="modal-emoji" id="modalEmoji"></div>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImage" alt="" hidden>
+      <p id="modalMessage"></p>
+      <a id="modalLink" class="modal-link" target="_blank" rel="noopener" hidden></a>
+    </div>
+  </div>
+
+  <!-- Gift-tag splash (also gives the browser the tap it needs to start music) -->
+  <div class="splash" id="splash">
+    <button class="gift" id="giftBtn">
+      <span class="gift-emoji">🎁</span>
+      <span class="gift-tag">
+        <span id="tagTo"></span>
+        <span id="tagFrom"></span>
+      </span>
+      <span class="gift-hint">tap to unwrap</span>
+    </button>
+  </div>
+
+  <script src="content.js"></script>
+  <script src="music.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
